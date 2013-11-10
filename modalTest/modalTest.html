@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Modal Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+ </head>
+ <body>
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  		<div class="modal-content">
+	    		<div class="modal-header ">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				    <h4 class="modal-title" id="myModalLabel">Plase Enter Prior Zip Code</h4>
+				</div>
+			    <div class="modal-body">
+			      	<div class="form-group">
+				      	<label class="col-sm-3 control-label" for="zip_code">Zip Code<span class="required-marker">*</span></label>
+				      	<div class="col-sm-9">
+				        	<input class="form-control zip_code" placeholder="Zip Code" type="text" name="zip_code">
+				        </div>
+				    </div>
+			    </div>
+			    <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" onClick="validateNext.zip();" class="btn btn-primary">Continue</button>
+			    </div>
+			</div>
+
+		  	<div class="modal-content hidden">
+			    <div class="modal-header ">
+			      	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			      	<h4 class="modal-title" id="myModalLabel">Please Choose Prior City</h4>
+			    </div>
+		      	<div class="modal-body">
+		        	<p>More than one city uses this ZIP Code.  Select the location that best describes where you live.<span class="required-marker">*</span></p>
+			        <ul>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        </ul>
+			    </div>
+			    <div class="modal-footer">
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      <button type="button" onClick="validateNext.next(1);" class="btn btn-primary">Continue</button>
+			    </div>
+		    </div>
+
+	  		<div class="modal-content hidden">
+			    <div class="modal-header ">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Please Choose Prior City</h4>
+			    </div>
+		      	<div class="modal-body clearfix">
+			        <div class="form-group">
+				      	<label class="col-sm-3 control-label" for="address_one">Address 1<span class="requiredmarker">*</span></label>
+				      	<div class="col-sm-9">
+				        	<input class="form-control address_one" placeholder="Address 1" type="text" name="address_one">
+				        </div>
+				    </div>
+				    <div class="form-group">
+				      	<label class="col-sm-3 control-label" for="address_two">Address 2</label>
+				      	<div class="col-sm-9">
+				        	<input class="form-control" placeholder="Address 2" type="text" name="address_two">
+				        </div>
+				    </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" id="next" class="btn btn-primary" onClick="validateNext.address();">Continue</button>
+		      </div>
+		</div>
+
+		<div class="modal-content hidden">
+			    <div class="modal-header ">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Please Verify Your Prior Address</h4>
+			    </div>
+		      	<div class="modal-body">
+			        <p>Yu've entered the following address:</p>
+			        <p>[Street Address], [City], [ST] [XXXXX]</p>
+			        <p>We've found the following:</p>
+			        <ul>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        	<li>[City1], [ST] [XXXXX]</li>
+			        </ul>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" onClick="validateNext.startOver();" class="btn">Re-enter</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		</div>
+	</div><!-- /.modal-dialog -->
+  
+
+ <script src="../js/libs/jquery-1.9.1.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript">
+  
+  	var validateNext = {
+	  	zip : function(){
+	  		var value = $('.zip_code').val();
+	  		var valid = /^\d{5}$/.test(value) ? valid = true : valid = false;
+	  		
+		     if(!valid){
+		       $('.zip_code').addClass("has-error");
+		       $('.zip_code').after("<span class='error'>Zip Code is required</span>");
+		     } else {
+		     	$('.modal-content').addClass('hidden');
+		     	$('.modal-content').eq(1).removeClass('hidden');
+		       $('.zip_code').removeClass("has-error");
+		      }
+	  	},
+	  	address : function(){
+	  		var value = $('.address_one').val();
+	  		var valid = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/i.test(value) ? valid = true : valid = false;
+	  		
+		     if(!valid){
+		       $('.address_one').addClass("has-error");
+		       $('.address_one').after("<span class='error'>Address 1 is required</span>");
+		     } else {
+		     	$('.modal-content').addClass('hidden');
+		     	$('.modal-content').eq(3).removeClass('hidden');
+		       $('.address_one').removeClass("has-error");
+		      }
+	  	},
+	  	next: function(i){
+	  		$('.modal-content').addClass('hidden');
+		    $('.modal-content').eq(i+1).removeClass('hidden');
+	  	},
+	  	startOver: function(){
+	  		$('.modal-content').addClass('hidden');
+		    $('.modal-content').eq(0).removeClass('hidden');
+		    $('.zip_code').val('');
+		    $('.address_one').val('');
+		    $('.address_two').val('');
+	  	}
+	  };
+	  
+  </script>
+ </body>
+ </html>

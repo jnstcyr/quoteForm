@@ -1,0 +1,60 @@
+body {
+            background: #d7f6f9;
+        }
+        .navbar {
+            height: 50px;
+            background: #005faf;
+        }
+        .navbar-brand {
+            padding: 0 15px;
+        }
+        .content-inner {
+            background: #fff;
+            padding: 10px;
+        }
+        .required-marker {
+            color: red;
+        }
+        .required-marker:before {
+            content: ' ';
+        }
+        .checkbox-group {
+            padding: 0 0 10px 12px;
+        }
+        .message {
+            padding-top: 20px;
+        }
+        .message i {
+            font-size: 12px;
+        }
+        .terms {
+            padding: 0 0 10px 12px;
+        }
+        .terms p {
+            background: #e4e4e4;
+            border: solid 1px #ccc;
+            padding: 5px;
+        }
+        form .btn {
+            margin-left: 10px;
+        }.btn-other {
+            background: #e9e9e9;
+            border: 1px solid #ccc;
+        }
+        .btn-other, .green {
+            color: #71ad38;
+        }
+        .green {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        aside .content-inner p,
+        aside .content-inner a,
+        aside .content-inner button {
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
+        aside .content-inner p a {
+            display: inline-block;
+        }
