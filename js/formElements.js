@@ -11,11 +11,11 @@ QuoteForm.Suffix = Ember.ArrayController.create ({
 QuoteForm.TextField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[a-z]+$/i.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
-
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>This field is required</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>This field is required.</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -24,11 +24,11 @@ QuoteForm.TextField = Ember.TextField.extend({
 QuoteForm.AddressField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/i.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
-
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Address is required</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Address is required</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -39,11 +39,11 @@ QuoteForm.AddressField = Ember.TextField.extend({
 QuoteForm.NumberField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[0-9]+$/i.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
-
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>This field is required</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>This field is required</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -52,11 +52,12 @@ QuoteForm.NumberField = Ember.TextField.extend({
 QuoteForm.PhoneField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^([+0-9]{1,3})?([0-9]{10,11})$/i.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
 
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Phone is required (XXX)XXX-XXXX</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Phone is required (XXX)XXX-XXXX</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -72,11 +73,11 @@ QuoteForm.PhoneField = Ember.TextField.extend({
 QuoteForm.ZipCodeField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^\d{5}$/.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
-
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Zip Code is required</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Zip Code is required</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -92,11 +93,11 @@ QuoteForm.ZipCodeField = Ember.TextField.extend({
 QuoteForm.EmailField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[a-z0-9._-]+@[a-z]+.[a-z.]{2,5}$/i.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
-
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Please enter a valid email.</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Please enter a valid email.</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -112,11 +113,11 @@ QuoteForm.EmailField = Ember.TextField.extend({
 QuoteForm.DOBField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/i.test(this.get('value')) ? valid = true : valid = false;
-      this.$().next(".err").remove();
-
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Please enter a valid date.</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Please enter a valid date.</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }

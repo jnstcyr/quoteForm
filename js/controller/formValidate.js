@@ -5,8 +5,10 @@ QuoteForm.ValidationController = Ember.ObjectController.extend({
       this.$().next(".err").remove();
 
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Please enter a valid</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Please enter valid text.</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
@@ -16,8 +18,10 @@ QuoteForm.ValidationController = Ember.ObjectController.extend({
       this.$().next(".err").remove();
 
       if(!valid){
-        this.$().parent().addClass("has-error");
-        this.$().after("<span class='error'>Numbers only please.</span>");
+        if($('.has-error').length === 0){
+          this.$().parent().addClass("has-error");
+          this.$().after("<span class='error'>Numbers only please.</span>");
+        }
       } else {
         this.$().removeClass("has-error")
       }
