@@ -10,7 +10,7 @@ QuoteForm.ValidationController = Ember.ObjectController.extend({
           this.$().after("<span class='error'>Please enter valid text.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error")
       }
    },
     numberValidate: function() {
@@ -23,7 +23,7 @@ QuoteForm.ValidationController = Ember.ObjectController.extend({
           this.$().after("<span class='error'>Numbers only please.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error")
       }
    }
   }

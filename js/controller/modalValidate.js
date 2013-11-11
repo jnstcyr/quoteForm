@@ -11,7 +11,7 @@ var validateNext = {
        } else {
           $('.modal-content').addClass('hidden');
           $('.modal-content').eq(1).removeClass('hidden');
-         $('.zip_code').removeClass("has-error");
+          $('.zip_code').removeClass("has-error");
         }
   },
   address : function(){

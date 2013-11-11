@@ -14,10 +14,11 @@ QuoteForm.TextField = Ember.TextField.extend({
       if(!valid){
         if($('.has-error').length === 0){
           this.$().parent().addClass("has-error");
-          this.$().after("<span class='error'>This field is required.</span>");
+          this.$().after("<span class='error'>This field is required, text only please.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
    }
 });
@@ -27,10 +28,11 @@ QuoteForm.AddressField = Ember.TextField.extend({
       if(!valid){
         if($('.has-error').length === 0){
           this.$().parent().addClass("has-error");
-          this.$().after("<span class='error'>Address is required</span>");
+          this.$().after("<span class='error'>Address is required.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
    },                  
   type:"text",
@@ -42,10 +44,11 @@ QuoteForm.NumberField = Ember.TextField.extend({
       if(!valid){
         if($('.has-error').length === 0){
           this.$().parent().addClass("has-error");
-          this.$().after("<span class='error'>This field is required</span>");
+          this.$().after("<span class='error'>This field is required, numbers only please.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
     }
 });
@@ -56,10 +59,11 @@ QuoteForm.PhoneField = Ember.TextField.extend({
       if(!valid){
         if($('.has-error').length === 0){
           this.$().parent().addClass("has-error");
-          this.$().after("<span class='error'>Phone is required (XXX)XXX-XXXX</span>");
+          this.$().after("<span class='error'>Phone is required (XXX)XXX-XXXX.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
     },
      placeholder:"(XXX) XXX-XXXX",
@@ -76,10 +80,11 @@ QuoteForm.ZipCodeField = Ember.TextField.extend({
       if(!valid){
         if($('.has-error').length === 0){
           this.$().parent().addClass("has-error");
-          this.$().after("<span class='error'>Zip Code is required</span>");
+          this.$().after("<span class='error'>Zip Code is required, numbers only please.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
     },
     placeholder:"Zip Code",
@@ -99,7 +104,8 @@ QuoteForm.EmailField = Ember.TextField.extend({
           this.$().after("<span class='error'>Please enter a valid email.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
     },
      placeholder:"Email Address",
@@ -116,13 +122,14 @@ QuoteForm.DOBField = Ember.TextField.extend({
       if(!valid){
         if($('.has-error').length === 0){
           this.$().parent().addClass("has-error");
-          this.$().after("<span class='error'>Please enter a valid date.</span>");
+          this.$().after("<span class='error'>Please enter a date, MM/DD/YYYY.</span>");
         }
       } else {
-        this.$().removeClass("has-error")
+        this.$().parent().removeClass("has-error");
+        $('.error').empty();
       }
     },
-    placeholder:"mm/dd/yyyy",
+    placeholder:"MM/DD/YYYY",
     type:"text",
     classNames:"form-control",
     required:"true",
