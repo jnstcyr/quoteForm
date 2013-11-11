@@ -34,14 +34,7 @@
                 <div class="clearfix">
                     <div class="form-group col-xs-12 col-sm-8 col-md-8">
                         <label for="first_name">First Name<span class="required-marker">*</span></label>
-                        {{ view QuoteForm.TextField
-                            valueBinding="QuoteForm.alphaNumInput"
-                            placeholder="First Name" 
-                            type="text" 
-                            classNames="form-control" 
-                            required="true"
-                            name="first_name" 
-                            viewName="firstNameField"}}
+                        {{ view QuoteForm.FirstNameField }}
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-4">
                         <label>Middle Intial</label>
@@ -56,14 +49,7 @@
                     </div>
                     <div class="form-group col-xs-12 col-sm-8 col-md-8">
                         <label for="last_name">Last Name<span class="required-marker">*</span></label>
-                        {{ view QuoteForm.TextField
-                            placeholder="Last Name" 
-                            type="text" 
-                            classNames="form-control" 
-                            required="true" 
-                            valueBinding="lastName" 
-                            name="last_name" 
-                            viewName="lastNameField"}}
+                        {{ view QuoteForm.LastNameField }}
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-4">
                         <label>Suffix</label>
