@@ -58,3 +58,6 @@ body {
         aside .content-inner p a {
             display: inline-block;
         }
+        .modal-body .form-group {
+            margin-bottom: 10px;
+        }

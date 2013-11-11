@@ -30,7 +30,7 @@
             <div class="content-inner">
                 <h1>YOUR INFORMATION</h1>
                 <hr>
-                <form {{action "" on="submit"}}>
+                <form>
                 <div class="clearfix">
                     <div class="form-group col-xs-12 col-sm-8 col-md-8">
                         <label for="first_name">First Name<span class="required-marker">*</span></label>
@@ -75,20 +75,16 @@
                     <div class="form-group col-xs-12 col-sm-8 col-md-8">
                         <label for="address_primary">Address 1<span class="required-marker">*</span></label>
                         {{ view QuoteForm.AddressField 
-                            placeholder="Address 1" 
-                            type="text" 
-                            classNames="form-control" 
+                            placeholder="Address 1"
                             required="true" 
                             valueBinding="addressPrimary" 
                             name="address_primary" 
-                            viewName="addressPrimaryField"}}
+                            viewName="addressPrimaryField" }}
                     </div>
                     <div class="form-group col-xs-12 col-sm-8 col-md-8">
                         <label for="address_secondary">Address 2</label>
                         {{ view QuoteForm.AddressField 
-                            placeholder="Address 2" 
-                            type="text" 
-                            classNames="form-control" 
+                            placeholder="Address 2"
                             required="false" 
                             valueBinding="addressSecondary" 
                             name="address_secondary" 
@@ -111,6 +107,7 @@
                             contentBinding="QuoteForm.States.states"
                             selectionBinding="QuoteForm.States.selectedState"
                             classNameBindings="AQuoteForm.States.classNames"
+                            classNames="form-control"
                         }}
                     </div>
                     <div class="form-group col-xs-6 col-sm-6 col-md-3">
@@ -188,7 +185,7 @@
                 <div class="modal-content">
                 <div class="modal-header ">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Plase Enter Prior Zip Code</h4>
+                    <h4 class="modal-title" id="myModalLabel">Please Enter Prior Zip Code</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -200,7 +197,7 @@
                 </div>
                 <div class="modal-footer">
                     {{#link-to 'infoForm'}}<span type="button" class="btn btn-default"  data-dismiss="modal" aria-hidden="true">Close</span>{{/link-to}}
-                    <button type="button" onClick="validateNext.zip();" class="btn btn-primary">Continue</button>
+                    <button type="button" onClick="validateNext.zip();" class="btn btn-success">Continue</button>
                 </div>
             </div>
 
@@ -230,17 +227,27 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Please Choose Prior City</h4>
                 </div>
-                <div class="modal-body clearfix">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="address_one">Address 1<span class="requiredmarker">*</span></label>
+                <div class="modal-body">
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label" for="prior_address_primary">Address 1<span class="required-marker">*</span></label>
                         <div class="col-sm-9">
-                            <input class="form-control address_one" placeholder="Address 1" type="text" name="address_one">
+                            {{ view QuoteForm.AddressField 
+                            placeholder="Address 1"
+                            required="true" 
+                            valueBinding="priorAddressPrimary" 
+                            id="prior_address_primary" 
+                            viewName="priorAddressPrimaryField" }}
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group clearfix">
                         <label class="col-sm-3 control-label" for="address_two">Address 2</label>
                         <div class="col-sm-9">
-                            <input class="form-control" placeholder="Address 2" type="text" name="address_two">
+                            {{ view QuoteForm.AddressField 
+                            placeholder="Address 2" 
+                            required="false" 
+                            valueBinding="addressSecondary" 
+                            id="address_secondary" 
+                            viewName="addressSecondaryField"}}
                         </div>
                     </div>
               </div>
@@ -256,7 +263,7 @@
                     <h4 class="modal-title" id="myModalLabel">Please Verify Your Prior Address</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Yu've entered the following address:</p>
+                    <p>You've entered the following address:</p>
                     <p>[Street Address], [City], [ST] [XXXXX]</p>
                     <p>We've found the following:</p>
                     <ul>
@@ -284,47 +291,9 @@
   <script src="/bower_components/bootstrap/js/modal.js"></script>
   <script src="js/app.js"></script>
   <script src="js/formElements.js"></script>
-  <script type="text/javascript">
+  <script src="js/controller/modalValidate.js">
   
-    var validateNext = {
-        zip : function(){
-            var value = $('.zip_code').val();
-            var valid = /^\d{5}$/.test(value) ? valid = true : valid = false;
-            
-             if(!valid){
-               $('.zip_code').addClass("has-error");
-               $('.zip_code').after("<span class='error'>Zip Code is required</span>");
-             } else {
-                $('.modal-content').addClass('hidden');
-                $('.modal-content').eq(1).removeClass('hidden');
-               $('.zip_code').removeClass("has-error");
-              }
-        },
-        address : function(){
-            var value = $('.address_one').val();
-            var valid = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/i.test(value) ? valid = true : valid = false;
-            
-             if(!valid){
-               $('.address_one').addClass("has-error");
-               $('.address_one').after("<span class='error'>Address 1 is required</span>");
-             } else {
-                $('.modal-content').addClass('hidden');
-                $('.modal-content').eq(3).removeClass('hidden');
-               $('.address_one').removeClass("has-error");
-              }
-        },
-        next: function(i){
-            $('.modal-content').addClass('hidden');
-            $('.modal-content').eq(i+1).removeClass('hidden');
-        },
-        startOver: function(){
-            $('.modal-content').addClass('hidden');
-            $('.modal-content').eq(0).removeClass('hidden');
-            $('.zip_code').val('');
-            $('.address_one').val('');
-            $('.address_two').val('');
-        }
-      };
+    
       
   </script>
 
