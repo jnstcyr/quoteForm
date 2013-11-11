@@ -1,4 +1,5 @@
 var errorHandler = function (valid, that, errorMesssage){
+  var errorMesssage ="this field is required";
   if(!valid){
     if(!that.$().parent().hasClass('.has-error')){
       that.$().parent().addClass("has-error");
