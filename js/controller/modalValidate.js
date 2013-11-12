@@ -16,8 +16,8 @@ var validateNext = {
   },
   address : function(){
       var value = $('#prior_address_primary').val();
-      var valid = /^[A-Za-z0-9]$/i.test(value) ? valid = true : valid = false;
-      
+      var valid = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/i.test(value) ? valid = true : valid = false;
+
        if(!valid){
           if($('.has-error').length === 0){
             $('#prior_address_primary').addClass("has-error");

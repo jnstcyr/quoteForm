@@ -64,17 +64,16 @@
                             placeholder="Address 1"
                             required="true" 
                             valueBinding="addressPrimary" 
-                            name="address_primary" 
-                            viewName="addressPrimaryField" }}
+                            name="address_primary" }}
                     </div>
                     <div class="form-group col-xs-12 col-sm-8 col-md-8">
                         <label for="address_secondary">Address 2</label>
-                        {{ view QuoteForm.AddressField 
+                        {{ view QuoteForm.TextField 
                             placeholder="Address 2"
+                            classNames="form-control"
                             required="false" 
                             valueBinding="addressSecondary" 
-                            name="address_secondary" 
-                            viewName="addressSecondaryField"}}
+                            name="address_secondary" }}
                     </div>
                 </div>
                 <div class="clearfix">
@@ -116,7 +115,7 @@
                     </div>
                     <button class="hidden btn btn-other priorAddBtn" type="button" {{action 'showModal' }} data-toggle="modal" data-target="#modal">Edit Prior Address</button>
                 </div>
-                <div class="clearfix">
+                <div class="clearfix four-up">
                     <div class="form-group col-xs-12 col-sm-6 col-md-6">
                         <label for="date_of_birth">Date of Birth<span class="required-marker">*</span></label>
                         {{ view QuoteForm.DOBField }}
@@ -228,8 +227,9 @@
                     <div class="form-group clearfix">
                         <label class="col-sm-3 control-label" for="address_two">Address 2</label>
                         <div class="col-sm-9">
-                            {{ view QuoteForm.AddressField 
-                            placeholder="Address 2" 
+                            {{ view Ember.TextField 
+                            placeholder="Address 2"
+                            classNames="form-control"
                             required="false" 
                             valueBinding="addressSecondary" 
                             id="address_secondary" 

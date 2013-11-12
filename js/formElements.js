@@ -1,9 +1,9 @@
 var errorHandler = function (valid, that, errorMesssage){
-  var errorMesssage ="this field is required";
+  var messsage = errorMesssage ? errorMesssage : "This field is required.";
   if(!valid){
     if(!that.$().parent().hasClass('.has-error')){
       that.$().parent().addClass("has-error");
-      that.$().after("<span class='error'>"+errorMesssage+"</span>");
+      that.$().after("<span class='error'>"+messsage+"</span>");
     }
   } else {
     that.$().parent().removeClass("has-error");
@@ -32,10 +32,10 @@ QuoteForm.TextField = Ember.TextField.extend({
 QuoteForm.FirstNameField = Ember.TextField.extend({
   focusOut: function() {
      var valid = /^[a-z]+$/i.test(this.get('value')) ? valid = true : valid = false,
-         that = (this);
-     errorHandler(valid, that);
+         that = (this),
+         errorMesssage = "Please enter a first name.";
+     errorHandler(valid, that, errorMesssage);
   },
-  valueBinding:"QuoteForm.alphaNumInput",
   placeholder:"First Name",
   type:"text",
   classNames:"form-control",
@@ -46,8 +46,9 @@ QuoteForm.FirstNameField = Ember.TextField.extend({
 QuoteForm.LastNameField = Ember.TextField.extend({
   focusOut: function() {
      var valid = /^[a-z]+$/i.test(this.get('value')) ? valid = true : valid = false,
-         that = (this);
-     errorHandler(valid, that);
+         that = (this),
+         errorMesssage = "Please enter a last name.";
+     errorHandler(valid, that, errorMesssage);
   },
   placeholder:"Last Name",
   type:"text",
@@ -60,8 +61,9 @@ QuoteForm.LastNameField = Ember.TextField.extend({
 QuoteForm.AddressField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/i.test(this.get('value')) ? valid = true : valid = false,
-          that = (this);
-      errorHandler(valid, that);
+          that = (this),
+         errorMesssage = "Please enter an address.";
+      errorHandler(valid, that, errorMesssage);
    },                  
   type:"text",
   classNames:"form-control"
@@ -69,15 +71,17 @@ QuoteForm.AddressField = Ember.TextField.extend({
 QuoteForm.NumberField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[0-9]+$/i.test(this.get('value')) ? valid = true : valid = false,
-          that = (this);
-      errorHandler(valid, that);
+          that = (this),
+         errorMesssage = "Numbers only, please.";
+      errorHandler(valid, that, errorMesssage);
     }
 });
 QuoteForm.PhoneField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^([+0-9]{1,3})?([0-9]{10,11})$/i.test(this.get('value')) ? valid = true : valid = false,
-          that = (this);
-      errorHandler(valid, that);
+          that = (this),
+         errorMesssage = "Please enter a valid phone number (XXX) XXX-XXXX.";
+      errorHandler(valid, that, errorMesssage);
     },
      placeholder:"(XXX) XXX-XXXX",
      type:"phone",
@@ -90,8 +94,9 @@ QuoteForm.PhoneField = Ember.TextField.extend({
 QuoteForm.ZipCodeField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^\d{5}$/.test(this.get('value')) ? valid = true : valid = false,
-          that = (this);
-      errorHandler(valid, that);
+          that = (this),
+         errorMesssage = "Please enter a valid zip code XXXXX.";
+      errorHandler(valid, that, errorMesssage);
     },
     placeholder:"Zip Code",
     type:"text",
@@ -104,8 +109,9 @@ QuoteForm.ZipCodeField = Ember.TextField.extend({
 QuoteForm.EmailField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[a-z0-9._-]+@[a-z]+.[a-z.]{2,5}$/i.test(this.get('value')) ? valid = true : valid = false,
-          that = (this);
-      errorHandler(valid, that);
+          that = (this),
+         errorMesssage = "Please enter a valid email address.";
+      errorHandler(valid, that, errorMesssage);
     },
      placeholder:"Email Address",
      type:"email",
@@ -118,8 +124,9 @@ QuoteForm.EmailField = Ember.TextField.extend({
 QuoteForm.DOBField = Ember.TextField.extend({
    focusOut: function() {
       var valid = /^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/i.test(this.get('value')) ? valid = true : valid = false,
-          that = (this);
-      errorHandler(valid, that);
+          that = (this),
+         errorMesssage = "Please enter a valid date of birth, MM/DD/YYYY.";
+      errorHandler(valid, that, errorMesssage);
     },
     placeholder:"MM/DD/YYYY",
     type:"text",
