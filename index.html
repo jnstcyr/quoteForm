@@ -13,7 +13,6 @@
     <div class="header clearfix">
         <nav class="navbar" role="navigation">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#"><img src="css/images/logo-175x77.png"></a>
           </div>
         </nav>
     </div>
@@ -109,12 +108,6 @@
                         <button class="btn btn-other" type="button">Edit</button>
                     </div>
                 </div>
-                <div class="clearfix">
-                    <div class="checkbox-group">
-                        <label class="checkbox-inline"><input {{action 'showModal' }} data-toggle="modal" data-target="#modal" type="checkbox"> I have lived at this address for less than one year.</label>
-                    </div>
-                    <button class="hidden btn btn-other priorAddBtn" type="button" {{action 'showModal' }} data-toggle="modal" data-target="#modal">Edit Prior Address</button>
-                </div>
                 <div class="clearfix four-up">
                     <div class="form-group col-xs-12 col-sm-6 col-md-6">
                         <label for="date_of_birth">Date of Birth<span class="required-marker">*</span></label>
@@ -145,8 +138,7 @@
                 <p class="green">XXXXXXXXXX</p>
                 <hr>
                 <p>For assistance, call</p>
-                <p class="green">1-800-MYAMFAM</p>
-                <p>1-800-692-6362</p>
+                <p class="green">1-800-XXXXXXX</p>
                 <hr>
                 <p class="green">Chat with Us Online</p>
                 <p>Receive personal assistance from a customer representative.</p>
@@ -164,111 +156,6 @@
     </div>
   </script>
 
-<script type="text/x-handlebars" data-template-name="modalForm">
-    <div class="modal fade" id="formModal">
-        <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header ">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Please Enter Prior Zip Code</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="zip_code">Zip Code<span class="required-marker">*</span></label>
-                        <div class="col-sm-9">
-                            <input class="form-control zip_code" placeholder="Zip Code" type="text" name="zip_code">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    {{#link-to 'infoForm'}}<span type="button" class="btn btn-default"  data-dismiss="modal" aria-hidden="true">Close</span>{{/link-to}}
-                    <button type="button" onClick="validateNext.zip();" class="btn btn-success">Continue</button>
-                </div>
-            </div>
-
-            <div class="modal-content hidden">
-                <div class="modal-header ">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Please Choose Prior City</h4>
-                </div>
-                <div class="modal-body">
-                    <p>More than one city uses this ZIP Code.  Select the location that best describes where you live.<span class="required-marker">*</span></p>
-                    <ul>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                  {{#link-to 'infoForm'}}<span type="button" class="btn btn-default"  data-dismiss="modal" aria-hidden="true">Close</span>{{/link-to}}
-                  <button type="button" onClick="validateNext.next(1);" class="btn btn-success">Continue</button>
-                </div>
-            </div>
-
-            <div class="modal-content hidden">
-                <div class="modal-header ">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Please Choose Prior City</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group clearfix">
-                        <label class="col-sm-3 control-label" for="prior_address_primary">Address 1<span class="required-marker">*</span></label>
-                        <div class="col-sm-9">
-                            {{ view QuoteForm.AddressField 
-                            placeholder="Address 1"
-                            required="true" 
-                            valueBinding="priorAddressPrimary" 
-                            id="prior_address_primary" 
-                            viewName="priorAddressPrimaryField" }}
-                        </div>
-                    </div>
-                    <div class="form-group clearfix">
-                        <label class="col-sm-3 control-label" for="address_two">Address 2</label>
-                        <div class="col-sm-9">
-                            {{ view Ember.TextField 
-                            placeholder="Address 2"
-                            classNames="form-control"
-                            required="false" 
-                            valueBinding="addressSecondary" 
-                            id="address_secondary" 
-                            viewName="addressSecondaryField"}}
-                        </div>
-                    </div>
-              </div>
-              <div class="modal-footer">
-                {{#link-to 'infoForm'}}<span type="button" class="btn btn-default"  data-dismiss="modal" aria-hidden="true">Close</span>{{/link-to}}
-                <button type="button" id="next" class="btn btn-success" onClick="validateNext.address();">Continue</button>
-              </div>
-        </div>
-
-        <div class="modal-content hidden">
-                <div class="modal-header ">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Please Verify Your Prior Address</h4>
-                </div>
-                <div class="modal-body">
-                    <p>You've entered the following address:</p>
-                    <p>[Street Address], [City], [ST] [XXXXX]</p>
-                    <p>We've found the following:</p>
-                    <ul>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                        <li>[City1], [ST] [XXXXX]</li>
-                    </ul>
-              </div>
-              <div class="modal-footer">
-                {{#link-to 'infoForm'}}<span type="button" class="btn btn-default"  data-dismiss="modal" aria-hidden="true">Close</span>{{/link-to}}
-                <button type="button" id="next" class="btn btn-success">Continue</button>
-                <button type="button" onClick="validateNext.startOver();" class="btn">Re-enter</button>
-              </div>
-        </div>
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-</script>
 
 
   <script src="js/libs/jquery-1.9.1.js"></script>
